@@ -1,0 +1,62 @@
+step1. Download the kafka tar file from kafka.apache.org
+
+step2. extract the tar folder on any location on your window 
+
+step3. change the configuration file of server.properties which is inside the 
+config folder 
+
+log.dirs=C:/kafka_2.11-2.3.1/kafka_2.11-2.3.1/log/kafka-logs
+
+step4. change the configureation file for zookeeper.properties
+dataDir=C:/kafka_2.11-2.3.1/kafka_2.11-2.3.1/zookeeper_log
+
+
+step5. start the zookeper server through below command 
+
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+
+step6. start kafka  server 
+
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+#create topic 
+
+.\bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1  --partitions 1 --topic TWITTER_TOPIC
+
+
+step6. Kafka Producer Command for Message publish
+>.\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic TWITTER_TOPIC
+
+Step7. Kafka Consuer Command for Message publish
+> .\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic TWITTER_TOPIC --from-beginning 
+
+
+
+
+#list of topic 
+
+.\bin\windows\kafka-topics.bat --list --zookeeper localhost:2181
+
+
+#describe topic 
+
+.\bin\windows\kafka-topics.bat --zookeeper localhost:2181 --topic TWITTER_TOPIC --describe
+
+#delte topic 
+
+.\bin\windows\kafka-topics.bat --zookeeper localhost:2181 --delete --topic  Test_TOPIC1
+
+#zookepr sehll
+
+.\bin\windows\zookeeper-shell.bat localhost:2181 
+
+step6. For Testing purpose create topic: Test_TOPIC
+
+.\bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic Test_TOPIC1
+
+
+
+
+
+
